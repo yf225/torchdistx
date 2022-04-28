@@ -25,7 +25,7 @@ namespace detail {
 // functorch and deferred-init cannot be used in the same process.
 //
 // TODO: Once the dispatch key limitation is resolved define our own key.
-constexpr auto kDeferredInitDispatchKey = at::DispatchKey::FuncTorchDynamicLayerFrontMode;
+constexpr auto kDeferredInitDispatchKey = at::DispatchKey::DeferredInit;
 
 }  // namespace detail
 

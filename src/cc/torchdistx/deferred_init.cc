@@ -792,7 +792,7 @@ void DeferredInitHandler::run() {
   // exclude our handler from dispatch. Once again we leverage functorch and
   // use its post-autograd key which happens to be excluded exactly where we
   // need (see `internal_new_from_data()` in torch).
-  if (tls_is_dispatch_key_excluded(DispatchKey::FuncTorchDynamicLayerBackMode)) {
+  if (tls_is_dispatch_key_excluded(DispatchKey::DeferredInit)) {
     redispatchToBackend();
 
     return;
@@ -913,7 +913,7 @@ bool isDeferredInitEnabled() noexcept {
 }  // namespace torchdistx::detail
 
 // NOLINTNEXTLINE(cert-err58-cpp, clang-diagnostic-reserved-identifier)
-TORCH_LIBRARY_IMPL(_, /*DeferredInit*/ FuncTorchDynamicLayerFrontMode, m) {
+TORCH_LIBRARY_IMPL(_, /*DeferredInit*/ DeferredInit, m) {
   m.fallback(
       torch::CppFunction::makeFromBoxedFunction<&torchdistx::detail::runDeferredInitHandler>());
 }

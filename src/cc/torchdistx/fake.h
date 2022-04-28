@@ -27,7 +27,7 @@ namespace detail {
 // functorch and fake tensors cannot be used in the same process.
 //
 // TODO: Once the dispatch key limitation is resolved define our own key.
-constexpr auto kFakeDispatchKey = at::DispatchKey::FuncTorchDynamicLayerBackMode;
+constexpr auto kFakeDispatchKey = at::DispatchKey::Fake;
 
 class FakeTensorImpl;
 

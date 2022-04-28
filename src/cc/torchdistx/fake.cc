@@ -617,7 +617,7 @@ void runFakeHandler(const OperatorHandle& op, DispatchKeySet key_set, Stack* s) 
 }  // namespace torchdistx::detail
 
 // NOLINTNEXTLINE(cert-err58-cpp, clang-diagnostic-reserved-identifier)
-TORCH_LIBRARY_IMPL(_, /*Fake*/ FuncTorchDynamicLayerBackMode, m) {
+TORCH_LIBRARY_IMPL(_, /*Fake*/ Fake, m) {
   m.fallback(torch::CppFunction::makeFromBoxedFunction<&torchdistx::detail::runFakeHandler>());
 }
 
